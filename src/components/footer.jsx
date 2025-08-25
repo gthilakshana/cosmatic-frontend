@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-white border-t border-green-200 py-8 mt-10">
+        <footer className="w-full bg-white border-t border-green-200 py-8 ">
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
 
-                {/* Brand Section */}
+
                 <div className="flex flex-col items-center md:items-start space-y-3">
                     <Link to="/">
                         <div className="inline-block rounded-md">
@@ -25,7 +25,7 @@ export default function Footer() {
                     </p>
                 </div>
 
-                {/* Quick Links */}
+
                 <div className="space-y-2">
                     <h3 className="text-gray-800 font-semibold mb-2">Quick Links</h3>
                     <a href="/products" className="block text-gray-600 hover:text-green-800">Products</a>
@@ -33,7 +33,7 @@ export default function Footer() {
                     <a href="/contact" className="block text-gray-600 hover:text-green-800">Contact</a>
                 </div>
 
-                {/* Social & Inspiration */}
+
                 <div>
                     <h3 className="text-gray-800 font-semibold mb-2">Connect With Us</h3>
                     <div className="flex justify-center md:justify-start space-x-4">
@@ -50,7 +50,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Bottom Note */}
+
             <div className="mt-8 text-center text-gray-500 text-xs">
                 © {new Date().getFullYear()} Organic Cosmetics · Crafted with <GiHerbsBundle className="inline text-green-800" /> from nature
             </div>
