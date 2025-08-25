@@ -5,7 +5,7 @@ import { FaUser, FaShoppingCart } from "react-icons/fa";
 export default function Header() {
     const sections = [
         { name: "home", path: "/" },
-        { name: "products", path: "/products" },
+        { name: "product", path: "/products" },
         { name: "about", path: "/about" },
         { name: "contact", path: "/contact" },
     ];
@@ -23,7 +23,7 @@ export default function Header() {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center space-x-8 text-gray-700 font-medium">
+                <nav className="hidden md:flex items-center space-x-3 text-gray-700 font-medium">
                     {sections.map((section) => (
                         <Link
                             key={section.name}

@@ -1,7 +1,8 @@
 import { FaArrowUp } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
+import LoginPage from "./loginPage";
+import SignupPage from "./signupPage";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import HomeView from "../components/homeView";
@@ -41,6 +42,8 @@ export default function HomePage() {
                         <Route path="/" element={<HomeView />} />
                         <Route path="/products" element={<ProductPage />} />
                         <Route path="/about" element={<AboutPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/signup" element={<SignupPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                     </Routes>
 
@@ -50,7 +53,7 @@ export default function HomePage() {
             {showScrollButton && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-6 right-6 z-50 cursor-pointer bg-gray-700 hover:bg-gray-900 text-white p-3 rounded-full shadow-lg transition"
+                    className="fixed bottom-6 right-6 z-50 cursor-pointer bg-green-800 hover:bg-green-900 text-white p-3 rounded-[30%] shadow-lg transition"
                 >
                     <FaArrowUp />
                 </button>
