@@ -3,6 +3,7 @@ import './App.css'
 import AdminPage from './Pages/adminPage'
 import HomePage from './Pages/homePage'
 import LoginPage from './Pages/loginPage'
+import SignupPage from './Pages/signupPage'
 import ProductCard from './components/productCard'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path='/*' element={<HomePage />} />
             <Route path='/admin' element={<AdminPage />} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
             <Route path='/products' element={<h1>Products Page</h1>} />
           </Routes>
         </div>
