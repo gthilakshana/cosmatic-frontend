@@ -1,11 +1,19 @@
 import { FaWhatsapp, FaFacebookMessenger, FaTelegramPlane } from "react-icons/fa";
+import Footer from "./footer";
 
 export default function HomeView() {
     return (
-        <section className="min-h-screen bg-green-50 flex justify-center items-center">
+        <section className="min-h-screen bg-green-200 mb-4">
 
 
+            <div className="min-h-screen flex flex-col justify-center items-center ">
+                <h1 className="text-2xl font-bold">HomeView Page</h1>
+            </div>
 
+
+            <div className="mt-auto ">
+                <Footer />
+            </div>
 
 
 
@@ -46,6 +54,10 @@ export default function HomeView() {
                 </a>
 
             </div>
+
+
+
+
         </section>
     )
 }   
