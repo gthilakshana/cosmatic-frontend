@@ -33,7 +33,7 @@ export default function HomePage() {
 
             {loadingSections ? (
                 <div className="flex-1 flex items-center justify-center bg-white">
-                    <FadeLoader color="#39C906" loading={loadingSections} size={15} />
+                    <FadeLoader color="#006400" loading={loadingSections} size={15} />
                 </div>
             ) : (
                 <main className="flex-1">
