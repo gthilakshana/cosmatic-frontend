@@ -4,7 +4,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-green-50 to-green-100 mt-9">
 
-            {/* Page Header */}
+
             <div className="text-center py-16 px-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-green-800 tracking-wide">
                     About Us
@@ -14,7 +14,7 @@ export default function AboutPage() {
                 </p>
             </div>
 
-            {/* About Content */}
+
             <div className="max-w-5xl mx-auto px-6 md:px-12 mb-16">
                 <div className="bg-white border border-green-200 rounded-2xl shadow-sm hover:shadow-md transition p-8 md:p-12">
                     <h2 className="text-2xl font-semibold text-green-800 mb-6">Our Journey</h2>
@@ -43,7 +43,7 @@ export default function AboutPage() {
                 </div>
             </div>
 
-            {/* Footer */}
+
             <Footer />
         </div>
     );
