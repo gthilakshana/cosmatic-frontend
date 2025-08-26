@@ -50,17 +50,17 @@ export default function ContactPage() {
                             <input
                                 type="text"
                                 placeholder="Your Name"
-                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-600"
                             />
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-600"
                             />
                             <textarea
                                 placeholder="Your Message"
                                 rows="5"
-                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-green-300 rounded-xl px-4 py-3 text-green-800 placeholder-green-400 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-600"
                             ></textarea>
                             <button
                                 type="submit"
