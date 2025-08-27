@@ -31,7 +31,7 @@ export default function AdminCustomers() {
                 </h1>
 
                 <div className="overflow-x-auto">
-                    <div className="min-w-full shadow-lg rounded-xl bg-white">
+                    <div className="min-w-full shadow-lg bg-white">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-green-100 rounded-t-xl">
                                 <tr>
@@ -58,9 +58,20 @@ export default function AdminCustomers() {
                                         <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
                                             {customer.email}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-gray-800">
-                                            {customer.role}
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                className={`px-3 py-1 text-xs font-semibold 
+      ${customer.role === "admin"
+                                                        ? "bg-red-100 text-red-700"
+                                                        : customer.role === "admin"
+                                                            ? "bg-blue-100 text-blue-700"
+                                                            : "bg-green-100 text-green-700"
+                                                    }`}
+                                            >
+                                                {customer.role}
+                                            </span>
                                         </td>
+
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span
                                                 className={`px-2 py-1 rounded-full text-xs font-semibold ${customer.status === "blocked"
