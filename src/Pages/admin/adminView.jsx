@@ -9,7 +9,7 @@ export default function AdminView() {
             <div className="w-full bg-white rounded-xl shadow-md p-6 flex flex-col gap-6">
                 <h1 className="text-3xl font-bold text-green-900">Welcome Back!</h1>
 
-                {/* Stats Cards */}
+
                 <div className="grid grid-cols-3 gap-4">
                     <div className="bg-green-100 rounded-lg p-4 shadow hover:shadow-lg transition flex flex-col items-start">
                         <FaUsers className="text-green-600 text-2xl mb-2" />
@@ -28,7 +28,7 @@ export default function AdminView() {
                     </div>
                 </div>
 
-                {/* Chart Placeholder */}
+
                 <div className="bg-green-50 rounded-lg p-4 shadow h-64 flex items-center justify-center">
                     <p className="text-green-300 italic">Analytics Chart Placeholder</p>
                 </div>
