@@ -1,6 +1,7 @@
 import { FaWhatsapp, FaFacebookMessenger, FaTelegramPlane } from "react-icons/fa";
 import Footer from "./footer";
 import Banner from "./banner";
+import SkinTypeBrowse from "./skinTypeBrowse";
 
 export default function HomeView() {
     return (
@@ -13,7 +14,9 @@ export default function HomeView() {
                     <Banner />
                 </div>
 
-
+                <div className="min-h-screen flex flex-col ">
+                    <SkinTypeBrowse />
+                </div>
                 <div className="mt-auto ">
                     <Footer />
                 </div>

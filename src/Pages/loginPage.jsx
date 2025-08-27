@@ -1,22 +1,45 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaLeaf, FaGoogle, FaFacebookF } from "react-icons/fa";
 import Footer from "../components/footer";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
 
     async function Login() {
         try {
-            const response = await axios.post("http://localhost:5000/users/login", {
-                email,
-                password,
-            });
-            console.log(response.data);
+            const response = await axios.post(
+                import.meta.env.VITE_API_URL + '/api/users/login',
+                { email, password }
+            );
+
+            const { user, token, message } = response.data;
+
+            if (!user) {
+                toast.error(message);
+                return;
+            }
+            toast.success(message);
+            localStorage.setItem("token", token);
+            navigate(user.role === "admin" ? "/admin" : "/");
+
+
         } catch (error) {
-            console.error(error);
+            const status = error?.response?.status;
+            const errorMessage = error?.response?.data?.message || error.message;
+
+            if (status === 403) {
+                toast.error("Your account has been blocked.");
+            } else if (status === 401 || status === 404) {
+                toast.error(errorMessage);
+            } else {
+                toast.error("Something went wrong.");
+            }
         }
     }
 
@@ -46,31 +69,38 @@ export default function LoginPage() {
                         </h1>
 
 
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
-                        />
+                        <form onSubmit={(e) => { e.preventDefault(); Login(); }} className="space-y-3">
 
 
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
-                        />
+                            <input
+                                type="email"
+                                placeholder="Email Address"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
 
 
-                        <button
-                            onClick={Login}
-                            className="w-full py-3 bg-green-200 text-green-800 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
-                        >
-                            Login
-                        </button>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                required
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
 
+
+                            <button
+                                type="submit"
+                                className="w-full py-3 bg-green-200 text-green-800 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
+                            >
+                                Login
+                            </button>
+
+
+                        </form>
 
                         <div className="flex items-center gap-2 text-gray-400 my-2">
                             <hr className="flex-1 border-t border-gray-300" />

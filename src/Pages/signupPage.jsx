@@ -1,24 +1,49 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaLeaf, FaGoogle, FaFacebookF } from "react-icons/fa";
 import Footer from "../components/footer";
+import toast from "react-hot-toast";
 
 export default function SignupPage() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
-    async function Signup() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+
+    async function Signup(e) {
+        e.preventDefault();
+
         try {
-            const response = await axios.post("http://localhost:5000/users/signup", {
-                name,
-                email,
-                password,
-            });
-            console.log(response.data);
+            const response = await axios.post(
+                import.meta.env.VITE_API_URL + '/api/users/signup',
+                {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    role: "customer",
+                }
+            );
+
+            if (response.data.user) {
+                toast.error(response.data.message);
+
+            } else {
+                toast.success(response.data.message);
+            }
+
+
+
+
+            navigate('/');
+
         } catch (error) {
-            console.error(error);
+            const errorMsg = error?.response?.data?.message || "Signup failed.";
+            toast.error(errorMsg);
         }
     }
 
@@ -47,36 +72,49 @@ export default function SignupPage() {
                             <FaLeaf /> Sign Up
                         </h1>
 
-                        <input
-                            type="text"
-                            placeholder="Full Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
-                        />
 
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
-                        />
+                        <form action="" onSubmit={Signup} className="space-y-4">
+                            <input
+                                type="text"
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
 
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
-                        />
+                            <input
+                                type="text"
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
 
-                        <button
-                            onClick={Signup}
-                            className="w-full py-3 bg-green-200 text-green-900 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
-                        >
-                            Sign Up
-                        </button>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                            />
+
+                            <button
+                                type="submit"
+                                className="w-full py-3 bg-green-200 text-green-900 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
+                            >
+                                Sign Up
+                            </button>
+
+                        </form>
+
 
                         <div className="flex items-center gap-2 text-gray-400 my-2">
                             <hr className="flex-1 border-t border-gray-300" />
