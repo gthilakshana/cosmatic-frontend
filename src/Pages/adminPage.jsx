@@ -37,7 +37,7 @@ export default function AdminPage() {
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-1/5 md:flex md:flex-col`}
             >
 
-                <Link to="/admin" className="mb-8 flex justify-center">
+                <Link to="/admin" className="mb-8 flex justify-center  ">
                     <img
                         src="logo.png"
                         alt="Organic Cosmetics Logo"
@@ -45,6 +45,7 @@ export default function AdminPage() {
                     />
                 </Link>
 
+                <hr class="border-t-2 border-green-100 my-4 w-full mx-auto"></hr>
 
                 <nav className="flex flex-col gap-4 mt-6 text-green-700 text-lg">
                     {menuItems.map((item) => (
