@@ -7,6 +7,7 @@ import AdminProducts from "./admin/adminProducts";
 import AdminOrders from "./admin/adminOrders";
 import AdminView from "./admin/adminView";
 import AdminAddProducts from "./admin/adminAddProducts";
+import AdminAddCustomer from "./admin/adminAddCustomer";
 
 export default function AdminPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,33 +25,36 @@ export default function AdminPage() {
             <div className="md:hidden fixed top-4 left-4 z-50">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="p-2 bg-green-800 text-white rounded-md shadow-md"
+                    className="p-2 bg-green-800 text-white rounded-full shadow-md hover:bg-green-700 transition duration-300"
                 >
-                    {isOpen ? <FaTimes /> : <FaBars />}
+                    {isOpen ? <FaTimes size={17} /> : <FaBars size={17} />}
                 </button>
             </div>
 
 
-            <div className={`fixed top-0 left-0 h-full w-64 bg-green-100 shadow-md p-6 z-40 border-r-3 border-green-200 transform transition-transform duration-300
-                ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-[20%] md:flex md:flex-col`}>
+            <div
+                className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-6 z-40 border-r border-green-200 transform transition-transform duration-300
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-1/5 md:flex md:flex-col`}
+            >
 
-                <Link to="/admin" className="mb-6">
+                <Link to="/admin" className="mb-8 flex justify-center">
                     <img
                         src="logo.png"
                         alt="Organic Cosmetics Logo"
-                        className="h-9 md:h-12 w-[155px] sm:w-[150px] md:w-[220px] object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                        className="h-12 w-[220px] object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                     />
                 </Link>
 
-                <nav className="flex flex-col gap-4 text-[17px] text-green-700 mt-6">
+
+                <nav className="flex flex-col gap-4 mt-6 text-green-700 text-lg">
                     {menuItems.map((item) => (
                         <Link
                             key={item.name}
                             to={item.path}
-                            className="flex items-center gap-2 hover:text-green-500 transition"
+                            className="flex items-center gap-3 p-2 rounded-lg hover:bg-green-100 hover:text-green-800 transition duration-300"
                             onClick={() => setIsOpen(false)}
                         >
-                            {item.icon} {item.name}
+                            {item.icon} <span className="font-medium">{item.name}</span>
                         </Link>
                     ))}
                 </nav>
@@ -65,6 +69,7 @@ export default function AdminPage() {
                         <Route path="/customers" element={<AdminCustomers />} />
                         <Route path="/orders" element={<AdminOrders />} />
                         <Route path="/add-product" element={<AdminAddProducts />} />
+                        <Route path="/add-customer" element={<AdminAddCustomer />} />
                         <Route path="/products" element={<AdminProducts />} />
                     </Routes>
                 </div>
