@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
-import { FaUsers, FaChartLine, FaShoppingCart, FaLeaf, FaBars, FaTimes } from "react-icons/fa";
+import { FaUsers, FaChartLine, FaShoppingCart, FaLeaf, FaBars, FaTimes, FaHome } from "react-icons/fa";
+
 
 import AdminCustomers from "./admin/adminCustomers";
 import AdminProducts from "./admin/adminProducts";
@@ -34,10 +35,9 @@ export default function AdminPage() {
 
             <div
                 className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-6 z-40 border-r border-green-200 transform transition-transform duration-300
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-1/5 md:flex md:flex-col`}
+  ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-1/5 flex flex-col`}
             >
-
-                <Link to="/admin" className="mb-8 flex justify-center  ">
+                <Link to="/admin" className="mb-8 flex justify-center">
                     <img
                         src="logo.png"
                         alt="Organic Cosmetics Logo"
@@ -45,20 +45,31 @@ export default function AdminPage() {
                     />
                 </Link>
 
-                <hr class="border-t-2 border-green-100 my-4 w-full mx-auto"></hr>
+                <hr className="border-t-2 border-green-100 my-4 w-full mx-auto" />
 
-                <nav className="flex flex-col gap-4 mt-6 text-green-700 text-lg">
-                    {menuItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            to={item.path}
-                            className="flex items-center gap-3 p-2 rounded-lg hover:bg-green-100 hover:text-green-800 transition duration-300"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {item.icon} <span className="font-medium">{item.name}</span>
-                        </Link>
-                    ))}
-                </nav>
+
+                <div className="flex flex-col flex-1">
+                    <nav className="flex flex-col gap-4 mt-6 text-green-700 text-lg">
+                        {menuItems.map((item) => (
+                            <Link
+                                key={item.name}
+                                to={item.path}
+                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-green-100 hover:text-green-800 transition duration-300"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item.icon} <span className="font-medium">{item.name}</span>
+                            </Link>
+                        ))}
+                    </nav>
+
+                    <Link
+                        to="/"
+                        className="flex items-center gap-3 p-3 mt-auto rounded-lg bg-green-100 text-green-800 hover:bg-green-200 hover:text-green-900 transition duration-300 justify-center"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <FaHome /> <span className="font-medium">Home</span>
+                    </Link>
+                </div>
             </div>
 
 
