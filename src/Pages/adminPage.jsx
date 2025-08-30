@@ -3,7 +3,7 @@ import { FaSignOutAlt, FaUsers, FaChartLine, FaShoppingCart, FaLeaf, FaBars, FaT
 import { Link, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import AdminCustomers from "./admin/adminCustomers";
-import AdminProducts from "./admin/adminproducts";
+import AdminProducts from "./admin/adminProducts";
 import AdminOrders from "./admin/adminOrders";
 import AdminView from "./admin/adminView";
 import AdminAddProducts from "./admin/adminAddProducts";
