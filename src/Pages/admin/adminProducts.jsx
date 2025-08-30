@@ -105,8 +105,8 @@ export default function AdminProducts() {
 
     return (
         <>
-            <div className="w-full min-h-screen bg-green-50">
-                {/* Delete Modal */}
+            <div className="w-full min-h-screen bg-white">
+
                 {isDeleteConfirmVisible && (
                     <ProductDeleteConfirm
                         productID={productToDelete}
@@ -115,21 +115,21 @@ export default function AdminProducts() {
                     />
                 )}
 
-                {/* Page Container */}
-                <div className="mx-auto max-w-7xl p-6">
-                    {/* Card */}
-                    <div className="border border-secondary/10 bg-white shadow-sm">
-                        {/* Header Bar */}
-                        <div className="flex items-center justify-between gap-4 border-b border-secondary/10 px-6 py-4">
-                            <h1 className="text-lg font-semibold text-green-900">
+
+                <div className="mx-auto max-w-8xl">
+
+                    <div className="border border-secondary/10 bg-green-50 shadow-sm">
+
+                        <div className="flex items-center justify-between gap-4 border-b bg-green-900 border-secondary/10 px-6 py-4">
+                            <h1 className="text-lg font-semibold text-white">
                                 Products
                             </h1>
-                            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+                            <span className="px-3 py-1 text-xs font-medium text-white">
                                 {filteredProducts.length} items
                             </span>
                         </div>
 
-                        {/* Search Bar */}
+
                         <div className="p-4">
                             <input
                                 type="text"
@@ -140,7 +140,7 @@ export default function AdminProducts() {
                             />
                         </div>
 
-                        {/* Table */}
+
                         <div className="overflow-x-auto">
                             {isLoading ? (
                                 <Loader />
@@ -184,7 +184,7 @@ export default function AdminProducts() {
                                                     <img
                                                         src={item.images?.[0]}
                                                         alt={item.name}
-                                                        className="h-16 w-16 rounded-lg object-cover ring-1 ring-gray-300"
+                                                        className="h-16 w-16 object-cover ring-1 ring-gray-300"
                                                     />
                                                 </td>
                                                 <td className="px-4 py-3 font-mono text-sm text-gray-600 ">
@@ -230,12 +230,11 @@ export default function AdminProducts() {
                                                             size={34}
                                                             title="Edit"
                                                             onClick={() =>
-                                                                navigate(
-                                                                    "/admin/update-product",
-                                                                    { state: item }
-                                                                )
+                                                                navigate(`/admin/update-product/${item.productID}`, { state: item })
                                                             }
                                                         />
+
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -258,7 +257,7 @@ export default function AdminProducts() {
                 </div>
             </div>
 
-            {/* Add Product Button */}
+
             <button
                 onClick={() => setIsAddOpen(true)}
                 aria-label="Add Product"

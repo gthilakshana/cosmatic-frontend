@@ -60,13 +60,13 @@ export default function AdminAddCustomer({ isOpen, onClose, refresh }) {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-            {/* Background */}
+
             <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                 onClick={onClose}
             />
 
-            {/* Modal */}
+
             <div className="relative bg-white w-[90%] lg:w-[70%] max-h-[90vh] shadow-2xl overflow-y-auto z-10">
                 <div className="sticky top-0 bg-white border-b border-gray-200 flex items-center justify-between p-4 rounded-t-2xl">
                     <h2 className="text-xl font-semibold text-green-800">
@@ -156,7 +156,7 @@ export default function AdminAddCustomer({ isOpen, onClose, refresh }) {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="bg-green-700 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="bg-green-900 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isLoading ? "Saving..." : "Save Admin"}
                         </button>

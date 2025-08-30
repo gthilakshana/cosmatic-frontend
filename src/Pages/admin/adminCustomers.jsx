@@ -8,7 +8,6 @@ import { CiCirclePlus } from "react-icons/ci";
 import AdminAddCustomer from "./adminAddCustomer";
 import { Loader } from "../../components/loader";
 
-
 function CustomerDeleteConfirm({ customerID, close, refresh }) {
     function deleteCustomer() {
         const token = localStorage.getItem("token");
@@ -29,7 +28,6 @@ function CustomerDeleteConfirm({ customerID, close, refresh }) {
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex justify-center items-center px-4">
             <div className="bg-green-50 shadow-2xl relative max-w-sm w-full p-6 flex flex-col items-center gap-6 animate-fadeIn">
-
                 <button
                     onClick={close}
                     className="absolute -top-5 cursor-pointer -right-5 w-10 h-10 bg-red-600 rounded-full text-white flex justify-center items-center text-lg shadow-lg hover:bg-white hover:text-red-600 transition-colors"
@@ -37,14 +35,11 @@ function CustomerDeleteConfirm({ customerID, close, refresh }) {
                     <FaTimes />
                 </button>
 
-
                 <FaExclamationTriangle className="text-yellow-500 text-4xl" />
-
 
                 <p className="text-center text-gray-800 font-semibold text-lg">
                     Are you sure you want to delete customer ID: <span className="font-bold">{customerID}</span>?
                 </p>
-
 
                 <div className="flex gap-4 mt-2">
                     <button
@@ -65,11 +60,10 @@ function CustomerDeleteConfirm({ customerID, close, refresh }) {
     );
 }
 
-
 export default function AdminCustomers() {
     const [customers, setCustomers] = useState([]);
     const [search, setSearch] = useState("");
-    const [isAddOpen, setIsAddOpen] = useState(false);
+
     const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
     const [customerToDelete, setCustomerToDelete] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +77,9 @@ export default function AdminCustomers() {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then((res) => {
-                    setCustomers(res.data);
+
+                    const customersOnly = res.data.filter(u => u.role === "user");
+                    setCustomers(customersOnly);
                     setIsLoading(false);
                 })
                 .catch(() => {
@@ -96,15 +92,14 @@ export default function AdminCustomers() {
 
     const filteredCustomers = customers.filter(
         (c) =>
-            ((c.firstName + " " + c.lastName).toLowerCase().includes(search.toLowerCase())) ||
+            (c.firstName + " " + c.lastName).toLowerCase().includes(search.toLowerCase()) ||
             c.email.toLowerCase().includes(search.toLowerCase()) ||
-            (c.role || "").toLowerCase().includes(search.toLowerCase()) ||
             (c.status || "").toLowerCase().includes(search.toLowerCase())
     );
 
     return (
         <>
-            <div className="w-full min-h-screen bg-green-50">
+            <div className="w-full min-h-screen bg-white">
                 {isDeleteConfirmVisible && (
                     <CustomerDeleteConfirm
                         customerID={customerToDelete}
@@ -113,19 +108,19 @@ export default function AdminCustomers() {
                     />
                 )}
 
-                <div className="mx-auto max-w-7xl p-6">
-                    <div className="border border-secondary/10 bg-white shadow-sm">
-                        <div className="flex items-center justify-between gap-4 border-b border-secondary/10 px-6 py-4">
-                            <h1 className="text-lg font-semibold text-green-900">Customers</h1>
-                            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-                                {filteredCustomers.length} customers
+                <div className="mx-auto max-w-8xl">
+                    <div className="border border-secondary/10 bg-green-50 shadow-sm">
+                        <div className="flex items-center justify-between gap-4 border-b bg-green-900 border-secondary/10 px-6 py-4">
+                            <h1 className="text-lg font-semibold text-white">Users</h1>
+                            <span className=" px-3 py-1 text-xs font-medium text-white">
+                                {filteredCustomers.length} users
                             </span>
                         </div>
 
                         <div className="p-4">
                             <input
                                 type="text"
-                                placeholder="Search customers..."
+                                placeholder="Search users..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
@@ -155,7 +150,7 @@ export default function AdminCustomers() {
                                                 <td className="px-4 py-3 font-medium text-gray-800">{c.firstName} {c.lastName}</td>
                                                 <td className="px-4 py-3 text-gray-700">{c.email}</td>
                                                 <td className="px-4 py-3">
-                                                    <span className={`px-2.5 py-1 rounded-md text-xs font-medium ${c.role.toLowerCase() === "admin" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`}>
+                                                    <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-green-100 text-green-700">
                                                         {c.role}
                                                     </span>
                                                 </td>
@@ -175,12 +170,7 @@ export default function AdminCustomers() {
                                                                 setIsDeleteConfirmVisible(true);
                                                             }}
                                                         />
-                                                        <FiEdit
-                                                            className="cursor-pointer rounded-lg p-2 text-gray-500 ring-1 ring-gray-300 hover:bg-blue-100 hover:text-blue-600 transition"
-                                                            size={34}
-                                                            title="Edit"
-                                                            onClick={() => toast("Edit feature coming soon!")}
-                                                        />
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -199,20 +189,6 @@ export default function AdminCustomers() {
             </div>
 
 
-            <button
-                onClick={() => setIsAddOpen(true)}
-                className="fixed right-[50px] bottom-[50px] text-5xl text-green-900 hover:text-green-800 cursor-pointer transition-colors duration-200"
-            >
-                <CiCirclePlus />
-            </button>
-
-            <AdminAddCustomer
-                isOpen={isAddOpen}
-                onClose={() => {
-                    setIsAddOpen(false);
-                    setIsLoading(true);
-                }}
-            />
         </>
     );
 }

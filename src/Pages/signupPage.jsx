@@ -25,7 +25,7 @@ export default function SignupPage() {
                     lastName,
                     email,
                     password,
-                    role: "customer",
+                    role: "user",
                 }
             );
 
@@ -51,7 +51,7 @@ export default function SignupPage() {
         <>
             <div className="w-full min-h-screen flex flex-col md:flex-row bg-green-50">
 
-                <div className="hidden md:flex w-1/2 flex-col justify-center items-center p-5 bg-green-100">
+                <div className="hidden md:flex w-1/2 flex-col justify-center items-center p-5 bg-green-200">
                     <div className="flex w-full h-[300px] flex-col justify-center items-center gap-4 ">
                         <img
                             src="logo.png"
@@ -66,20 +66,20 @@ export default function SignupPage() {
                 </div>
 
 
-                <div className="w-full md:w-1/2 flex justify-center items-center p-5 bg-green-100 min-h-screen">
+                <div className="w-full md:w-1/2 flex justify-center items-center p-5 bg-green-200 min-h-screen">
                     <div className="w-full max-w-md bg-white shadow-lg p-10 flex flex-col gap-2">
                         <h1 className="text-3xl font-bold text-green-700 flex items-center gap-2 justify-center">
                             <FaLeaf /> Sign Up
                         </h1>
 
 
-                        <form action="" onSubmit={Signup} className="space-y-4">
+                        <form action="" onSubmit={Signup} className="space-y-4 mt-3">
                             <input
                                 type="text"
                                 placeholder="First Name"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
                             <input
@@ -87,7 +87,7 @@ export default function SignupPage() {
                                 placeholder="Last Name"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
                             <input
@@ -95,7 +95,7 @@ export default function SignupPage() {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
                             <input
@@ -103,12 +103,12 @@ export default function SignupPage() {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
                             <button
                                 type="submit"
-                                className="w-full py-3 bg-green-200 text-green-900 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
+                                className="w-full py-3 bg-green-900 text-white font-medium shadow hover:bg-green-800 transition-colors duration-300 cursor-pointer"
                             >
                                 Sign Up
                             </button>

@@ -24,11 +24,15 @@ export default function LoginPage() {
                 toast.error(message);
                 return;
             }
+
             toast.success(message);
+
+
             localStorage.setItem("token", token);
+            localStorage.setItem("role", user.role);
+            localStorage.setItem("userId", user.id);
+
             navigate(user.role === "admin" ? "/admin" : "/");
-
-
         } catch (error) {
             const status = error?.response?.status;
             const errorMessage = error?.response?.data?.message || error.message;
@@ -43,11 +47,12 @@ export default function LoginPage() {
         }
     }
 
+
     return (
         <>
             <div className="w-full min-h-screen flex flex-col md:flex-row bg-green-50">
 
-                <div className="hidden md:flex w-1/2 flex-col justify-center items-center p-5 bg-green-100">
+                <div className="hidden md:flex w-1/2 flex-col justify-center items-center p-5 bg-green-200">
                     <div className="flex w-full h-[300px] flex-col justify-center items-center gap-4 ">
                         <img
                             src="logo.png"
@@ -62,14 +67,14 @@ export default function LoginPage() {
                 </div>
 
 
-                <div className="w-full md:w-1/2 flex justify-center items-center p-5 bg-green-100 min-h-screen">
+                <div className="w-full md:w-1/2 flex justify-center items-center p-5 bg-green-200 min-h-screen">
                     <div className="w-full max-w-md bg-white shadow-lg p-10 flex flex-col gap-2">
                         <h1 className="text-3xl font-bold text-green-700 flex items-center gap-2 justify-center">
                             <FaLeaf /> Login
                         </h1>
 
 
-                        <form onSubmit={(e) => { e.preventDefault(); Login(); }} className="space-y-3">
+                        <form onSubmit={(e) => { e.preventDefault(); Login(); }} className="space-y-3 mt-3">
 
 
                             <input
@@ -78,7 +83,7 @@ export default function LoginPage() {
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 required
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
 
@@ -88,13 +93,13 @@ export default function LoginPage() {
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 required
-                                className="w-full px-4 py-3 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-200 transition"
+                                className="w-full px-4 py-3 rounded-xl border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
                             />
 
 
                             <button
                                 type="submit"
-                                className="w-full py-3 bg-green-200 text-green-800 font-medium shadow hover:bg-green-300 transition-colors duration-300 cursor-pointer"
+                                className="w-full py-3 bg-green-900 text-white font-medium shadow hover:bg-green-800 transition-colors duration-300 cursor-pointer"
                             >
                                 Login
                             </button>
@@ -109,10 +114,10 @@ export default function LoginPage() {
                         </div>
 
                         <div className="flex flex-col gap-3">
-                            <button className="w-full flex items-center justify-center gap-2 text-green-800 py-3 border-2 border-green-200 rounded-xl hover:bg-green-100 transition cursor-pointer">
+                            <button className="w-full flex items-center justify-center gap-2 text-green-800 py-3 border-2 border-green-600 rounded-xl hover:bg-green-100 transition cursor-pointer">
                                 <FaGoogle className="text-green-800" /> Login with Google
                             </button>
-                            <button className="w-full flex items-center justify-center gap-2 text-green-800  py-3 border-2 border-green-200 rounded-xl hover:bg-green-100 transition cursor-pointer">
+                            <button className="w-full flex items-center justify-center gap-2 text-green-800  py-3 border-2 border-green-600 rounded-xl hover:bg-green-100 transition cursor-pointer">
                                 <FaFacebookF className="text-green-800" /> Login with Facebook
                             </button>
                         </div>
